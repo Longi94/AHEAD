@@ -14,6 +14,7 @@
 
 #include <sstream>
 #include <cstdlib>
+#include <unordered_set>
 
 #include <column_storage/BucketManager.h>
 

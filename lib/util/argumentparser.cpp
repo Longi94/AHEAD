@@ -19,10 +19,8 @@
  * Created on 23. November 2016, 02:16
  */
 
-#ifdef DEBUG
-#include <iostream>
-#endif
 
+#include <iostream>
 #include <util/argumentparser.hpp>
 
 namespace ahead {
