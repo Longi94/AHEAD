@@ -41,3 +41,7 @@ CMakeFiles
 /coding_benchmark
 /ssb-dbgen
 /date.prev
+
+.vs/
+.vscode/
+CMakeSettings.json
