@@ -36,8 +36,8 @@
 #include "ANhelper.tcc"
 
 #ifdef __GNUC__
-#pragma GCC push_options
-#pragma GCC target "no-sse"
+//#pragma GCC push_options
+//#pragma GCC target "no-sse"
 #else
 #warning "Forcing scalar code is not yet implemented for this compiler"
 #endif
@@ -136,7 +136,7 @@ namespace ahead {
 }
 
 #ifdef __GNUC__
-#pragma GCC pop_options
+//#pragma GCC pop_options
 #else
 #warning "Unforcing scalar code is not yet implemented for this compiler"
 #endif

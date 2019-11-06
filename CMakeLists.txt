@@ -36,7 +36,7 @@ SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 SET(PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -Wall -Wextra -pedantic -Weffc++ -fexceptions -fnon-call-exceptions")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse4.2 -Wall -Wextra -pedantic -Weffc++ -fexceptions -fnon-call-exceptions")
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g3 -rdynamic")
 #SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DNDEBUG")
 # see
