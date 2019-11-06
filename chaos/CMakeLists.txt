@@ -1,0 +1,35 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.8 FATAL_ERROR)
+
+IF("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
+    MESSAGE(FATAL_ERROR "You must run cmake on the root diretory!")
+ENDIF()
+
+IF(POLICY CMP0048)
+    CMAKE_POLICY(SET CMP0048 NEW)
+    PROJECT(SSBQueriesChaos VERSION 0.9 LANGUAGES CXX)
+ELSE()
+    PROJECT(SSBQueriesChaos LANGUAGES CXX)
+ENDIF()
+
+MACRO( add_algorithm arg_name target_name )
+    MESSAGE(STATUS "Add executable ${target_name}")
+    FILE(GLOB SOURCE_FILES "${arg_name}.cpp")
+    ADD_EXECUTABLE(${target_name} ${SOURCE_FILES})
+    SET_PROPERTY(TARGET ${target_name} PROPERTY CXX_STANDARD 17)
+    SET_PROPERTY(TARGET ${target_name} PROPERTY CXX_STANDARD_REQUIRED ON)
+    TARGET_LINK_LIBRARIES(${target_name} AHEAD)
+ENDMACRO( add_algorithm )
+
+MESSAGE("Generating make scripts for ${PROJECT_NAME} in ${CMAKE_BUILD_TYPE} mode")
+MESSAGE(STATUS "link directory: ${LIBRARY_OUTPUT_PATH}")
+
+MACRO(add_ssb_SSE arg_queries)
+	SET(QUERIES "")
+    STRING(REPLACE " " ";" QUERIES "${arg_queries}")
+    FOREACH(Q ${QUERIES})
+        add_algorithm(${Q} "chaos-${Q}")
+        TARGET_COMPILE_DEFINITIONS("chaos-${Q}" PUBLIC "FORCE_SSE")
+    ENDFOREACH(Q QUERIES)
+ENDMACRO(add_ssb_SSE)
+
+add_ssb_SSE("ssbm-q11_normal")
