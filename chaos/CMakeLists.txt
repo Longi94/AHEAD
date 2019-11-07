@@ -32,4 +32,4 @@ MACRO(add_ssb_SSE arg_queries)
     ENDFOREACH(Q QUERIES)
 ENDMACRO(add_ssb_SSE)
 
-add_ssb_SSE("ssbm-q11_normal")
+add_ssb_SSE("ssbm-q11_normal ssbm-q11_continuous ssbm-q11_continuous_reenc ssbm-q11_early ssbm-q11_late")

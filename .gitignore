@@ -45,3 +45,4 @@ CMakeFiles
 .vs/
 .vscode/
 CMakeSettings.json
+*.tbl
