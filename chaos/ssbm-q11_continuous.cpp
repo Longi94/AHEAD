@@ -98,7 +98,6 @@ int main(int argc, char** argv)
     delete get<2>(tupleG);
     auto iter = get<0>(tupleG)->begin();
     auto result = iter->tail() * get<0>(tupleG)->tail.metaData.AN_Ainv;
-    cout << result << endl;
     delete iter;
     delete get<0>(tupleG);
 
@@ -108,6 +107,8 @@ int main(int argc, char** argv)
     delete batLDenc;
     delete batLOenc;
     delete batLEenc;
+
+    cout << result << endl;
 
     AHEAD::destroyInstance();
 
