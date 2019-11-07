@@ -23,6 +23,15 @@ ENDMACRO( add_algorithm )
 MESSAGE("Generating make scripts for ${PROJECT_NAME} in ${CMAKE_BUILD_TYPE} mode")
 MESSAGE(STATUS "link directory: ${LIBRARY_OUTPUT_PATH}")
 
+MACRO(add_ssb arg_queries)
+	SET(QUERIES "")
+    STRING(REPLACE " " ";" QUERIES "${arg_queries}")
+    FOREACH(Q ${QUERIES})
+        add_algorithm(${Q} "${Q}")
+        TARGET_COMPILE_OPTIONS("${Q}" PUBLIC "-fno-tree-vectorize")
+    ENDFOREACH(Q QUERIES)
+ENDMACRO(add_ssb)
+
 MACRO(add_ssb_SSE arg_queries)
 	SET(QUERIES "")
     STRING(REPLACE " " ";" QUERIES "${arg_queries}")
@@ -32,5 +41,6 @@ MACRO(add_ssb_SSE arg_queries)
     ENDFOREACH(Q QUERIES)
 ENDMACRO(add_ssb_SSE)
 
+add_ssb("ssbm-init")
 add_ssb_SSE("ssbm-q11_normal ssbm-q11_continuous ssbm-q11_continuous_reenc ssbm-q11_early ssbm-q11_late \
              ssbm-q41_normal ssbm-q41_continuous ssbm-q41_continuous_reenc ssbm-q41_early ssbm-q41_late")
