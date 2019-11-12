@@ -76,12 +76,16 @@ int main(int argc, char **argv)
     delete batC;
     delete batE;
 
+    bool detected = false;
+
     // 4) late check and decode
     auto tupleG = checkAndDecodeAN(batD);
+    CHECK_CHECKANDDECODE_AN(tupleG, detected);
     CLEAR_CHECKANDDECODE_AN(tupleG);
     auto batG = get<0>(tupleG);
     delete batD;
     auto tupleH = checkAndDecodeAN(batF);
+    CHECK_CHECKANDDECODE_AN(tupleH, detected);
     CLEAR_CHECKANDDECODE_AN(tupleH);
     auto batH = get<0>(tupleH);
     delete batF;

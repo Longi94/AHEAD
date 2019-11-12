@@ -143,12 +143,16 @@ int main(int argc, char **argv)
     auto batAYenc = fetchjoin(bat31, batDYenc); // VOID | d_year !!!
     delete bat31;
 
+    bool detected = false;
+
     // check and decode
     auto tupleAP = checkAndDecodeAN(batAPenc);
+    CHECK_CHECKANDDECODE_AN(tupleAP, detected);
     CLEAR_CHECKANDDECODE_AN(tupleAP);
     auto batAP = get<0>(tupleAP);
     delete batAPenc;
     auto tupleAY = checkAndDecodeAN(batAYenc);
+    CHECK_CHECKANDDECODE_AN(tupleAY, detected);
     CLEAR_CHECKANDDECODE_AN(tupleAY);
     auto batAY = get<0>(tupleAY);
     delete batAYenc;

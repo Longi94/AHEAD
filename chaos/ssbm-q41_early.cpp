@@ -67,38 +67,51 @@ int main(int argc, char **argv)
     delete batSScb;
     delete batSRcb;
 
+    bool detected = false;
+
     // 0) Eager Check
     auto tupleCC = checkAndDecodeAN(batCCenc);
+    CHECK_CHECKANDDECODE_AN(tupleCC, detected);
     CLEAR_CHECKANDDECODE_AN(tupleCC);
     auto batCC = get<0>(tupleCC);
     auto tupleDD = checkAndDecodeAN(batDDenc);
+    CHECK_CHECKANDDECODE_AN(tupleDD, detected);
     CLEAR_CHECKANDDECODE_AN(tupleDD);
     auto batDD = get<0>(tupleDD);
     auto tupleDY = checkAndDecodeAN(batDYenc);
+    CHECK_CHECKANDDECODE_AN(tupleDY, detected);
     CLEAR_CHECKANDDECODE_AN(tupleDY);
     auto batDY = get<0>(tupleDY);
     auto tupleLC = checkAndDecodeAN(batLCenc);
+    CHECK_CHECKANDDECODE_AN(tupleLC, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLC);
     auto batLC = get<0>(tupleLC);
     auto tupleLS = checkAndDecodeAN(batLSenc);
+    CHECK_CHECKANDDECODE_AN(tupleLS, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLS);
     auto batLS = get<0>(tupleLS);
     auto tupleLP = checkAndDecodeAN(batLPenc);
+    CHECK_CHECKANDDECODE_AN(tupleLP, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLP);
     auto batLP = get<0>(tupleLP);
     auto tupleLO = checkAndDecodeAN(batLOenc);
+    CHECK_CHECKANDDECODE_AN(tupleLO, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLO);
     auto batLO = get<0>(tupleLO);
     auto tupleLR = checkAndDecodeAN(batLRenc);
+    CHECK_CHECKANDDECODE_AN(tupleLR, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLR);
     auto batLR = get<0>(tupleLR);
     auto tupleLSC = checkAndDecodeAN(batLSCenc);
+    CHECK_CHECKANDDECODE_AN(tupleLSC, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLSC);
     auto batLSC = get<0>(tupleLSC);
     auto tuplePP = checkAndDecodeAN(batPPenc);
+    CHECK_CHECKANDDECODE_AN(tuplePP, detected);
     CLEAR_CHECKANDDECODE_AN(tuplePP);
     auto batPP = get<0>(tuplePP);
     auto tupleSS = checkAndDecodeAN(batSSenc);
+    CHECK_CHECKANDDECODE_AN(tupleSS, detected);
     CLEAR_CHECKANDDECODE_AN(tupleSS);
     auto batSS = get<0>(tupleSS);
 

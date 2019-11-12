@@ -1,15 +1,9 @@
 #ifndef TOOLS_SSBM_MACROS_HPP_
 #define TOOLS_SSBM_MACROS_HPP_
 
+#include <iostream>
 #include <tuple>
-
-#ifdef _OPENMP
-#define BEFORE_SAVE_STATS ssb::lock_for_stats();
-#define AFTER_SAVE_STATS ssb::unlock_for_stats();
-#else
-#define BEFORE_SAVE_STATS
-#define AFTER_SAVE_STATS
-#endif
+#include <column_operators/ANbase.hpp>
 
 ///////////////
 // SAVE_TYPE //
@@ -131,6 +125,91 @@ do {                                                                           \
     if (std::get<4>(TUPLE)) {                                                  \
         delete std::get<4>(TUPLE);                                             \
     }                                                                          \
+} while (false)
+
+
+void check_an_vector(ahead::bat::ops::AN_indicator_vector* vec, bool& detected)
+{
+    bool first_detect = !detected;
+    detected = detected || (vec && vec->size() > 0);
+
+    if (first_detect && detected) {
+        std::cerr << "bitflip detected" << std::endl;
+    }
+}
+
+#define CHECK_PAIR_AN(PAIR, DETECTED)\
+do {\
+    check_an_vector(std::get<1>(PAIR), DETECTED);\
+} while (false)
+
+#define CHECK_JOIN_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<1>(TUPLE), DETECTED);\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+        check_an_vector(std::get<3>(TUPLE), DETECTED);\
+        check_an_vector(std::get<4>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_FETCHJOIN_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<1>(TUPLE), DETECTED);\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_CHECKANDDECODE_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<1>(TUPLE), DETECTED);\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_GROUPBY_UNARY_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+        check_an_vector(std::get<3>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_GROUPBY_BINARY_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+        check_an_vector(std::get<3>(TUPLE), DETECTED);\
+        check_an_vector(std::get<4>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_GROUPEDSUM_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<1>(TUPLE), DETECTED);\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+        check_an_vector(std::get<3>(TUPLE), DETECTED);\
+    }\
+} while (false)
+
+#define CHECK_ARITHMETIC_AN(TUPLE, DETECTED)\
+do {\
+    if (!DETECTED)\
+    {\
+        check_an_vector(std::get<1>(TUPLE), DETECTED);\
+        check_an_vector(std::get<2>(TUPLE), DETECTED);\
+        check_an_vector(std::get<3>(TUPLE), DETECTED);\
+        check_an_vector(std::get<4>(TUPLE), DETECTED);\
+    }\
 } while (false)
 
 #endif /* TOOLS_SSBM_MACROS_HPP_ */

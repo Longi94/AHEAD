@@ -37,23 +37,31 @@ int main(int argc, char **argv)
     delete batLOcb;
     delete batLEcb;
 
+    bool detected = false;
+
     // 0) Eager Check
     auto tupleDD = checkAndDecodeAN(batDDenc);
+    CHECK_CHECKANDDECODE_AN(tupleDD, detected);
     CLEAR_CHECKANDDECODE_AN(tupleDD);
     auto batDD = get<0>(tupleDD);
     auto tupleDY = checkAndDecodeAN(batDYenc);
+    CHECK_CHECKANDDECODE_AN(tupleDY, detected);
     CLEAR_CHECKANDDECODE_AN(tupleDY);
     auto batDY = get<0>(tupleDY);
     auto tupleLQ = checkAndDecodeAN(batLQenc);
+    CHECK_CHECKANDDECODE_AN(tupleLQ, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLQ);
     auto batLQ = get<0>(tupleLQ);
     auto tupleLD = checkAndDecodeAN(batLDenc);
+    CHECK_CHECKANDDECODE_AN(tupleLD, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLD);
     auto batLD = get<0>(tupleLD);
     auto tupleLO = checkAndDecodeAN(batLOenc);
+    CHECK_CHECKANDDECODE_AN(tupleLO, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLO);
     auto batLO = get<0>(tupleLO);
     auto tupleLE = checkAndDecodeAN(batLEenc);
+    CHECK_CHECKANDDECODE_AN(tupleLE, detected);
     CLEAR_CHECKANDDECODE_AN(tupleLE);
     auto batLE = get<0>(tupleLE);
 
