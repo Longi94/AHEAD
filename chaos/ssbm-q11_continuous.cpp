@@ -1,5 +1,6 @@
 #include <column_operators/OperatorsAN.hpp>
 #include <AHEAD.hpp>
+#include <malloc.h>
 #include "macros.hpp"
 
 using namespace std;
@@ -9,6 +10,9 @@ using namespace simd::sse;
 
 int main(int argc, char** argv)
 {
+    mallopt(M_ARENA_MAX, 1);
+    mallopt(M_MMAP_MAX, 0);
+
     auto instance = AHEAD::createInstance(argc, argv);
 
     instance->loadTable("dateAN");

@@ -1,4 +1,5 @@
 #include <AHEAD.hpp>
+#include <malloc.h>
 
 using namespace std;
 using namespace ahead;
@@ -7,6 +8,9 @@ using namespace simd::sse;
 
 int main(int argc, char** argv)
 {
+    mallopt(M_ARENA_MAX, 1);
+    mallopt(M_MMAP_MAX, 0);
+
     auto instance = AHEAD::createInstance(argc, argv);
 
     instance->loadTable("date");
