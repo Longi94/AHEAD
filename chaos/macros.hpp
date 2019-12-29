@@ -134,7 +134,7 @@ void check_an_vector(ahead::bat::ops::AN_indicator_vector* vec, bool& detected)
     detected = detected || (vec && vec->size() > 0);
 
     if (first_detect && detected) {
-        std::cerr << "bitflip detected" << std::endl;
+        exit(111);
     }
 }
 
